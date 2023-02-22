@@ -23,17 +23,17 @@ Repository branch with executable files for:
 
 ### IDE
 Processing
-- (References)[https://processing.org/reference]
-- (Download)[https://processing.org/download]
+- [References](https://processing.org/reference)
+- [Download](https://processing.org/download)
 
 ### Tools/Libraries
-- (Box2D)[https://github.com/shiffman/Box2D-for-Processing]
-- (Minim)[https://code.compartmental.net/minim/]
-- (Video)[https://processing.org/reference/libraries/video/index.html]
+- [Box2D](https://github.com/shiffman/Box2D-for-Processing)
+- [Minim](https://code.compartmental.net/minim/)
+- [Video](https://processing.org/reference/libraries/video/index.htm)
 
 -------------------
 
-## Special thanks to (Ian McDermott)[https://github.com/ianmcdermott]
+## Special thanks to [Ian McDermott](https://github.com/ianmcdermott)
 Best contributor and mentor out there. Made this project possible and encouraged my interest in computational art. <3
 
 -------------------
