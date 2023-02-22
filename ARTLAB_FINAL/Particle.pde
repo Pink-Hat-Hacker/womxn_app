@@ -1,21 +1,21 @@
-// The Nature of Code
-// <http://www.shiffman.net/teaching/nature>
-// Spring 2010
-// Box2DProcessing example
-
-// A circular particle
+/**
+* Property of: Zoe Valladares
+* 
+* Code sampled from D. Shiffman
+*
+* The Nature of Code - Spring 2012
+* Box2DProcessing example
+* <http://www.shiffman.net/teaching/nature>
+* 
+* A circular particle
+*/
 
 class Particle {
 
   int r, g, b;
-
-  // We need to keep track of a Body and a radius
   Body body;
-
   float rad;
-
   color col;
-
   float tx, ty;
 
   Particle(float x, float y, float r_, color c_) {
@@ -23,18 +23,15 @@ class Particle {
     ty = y;
 
     rad = r_;
-    // This function puts the particle in the Box2d world
     makeBody(x, y, rad);
     body.setUserData(this);
 
-    // Using "right shift" as a faster technique than red(), green(), and blue()
     col = c_;
     r = (col >> 16) & 0xFF;  // Faster way of getting red(argb)
     g = (col >> 8) & 0xFF;   // Faster way of getting green(argb)
     b = col & 0xFF;          // Faster way of getting blue(argb)
   }
 
-  // This function removes the particle from the box2d world
   void killBody() {
     box2d.destroyBody(body);
   }
@@ -53,10 +50,6 @@ class Particle {
   }
   
   void attract() {
-    //Vec2 pos = box2d.getBodyPixelCoord(body);
-
-    //if (pos.x <= tx - rad*.9 && pos.x >= tx + rad*.9 && pos.y <= ty - rad*.9 &&  pos.y >= ty + rad*.9) { 
-    //println("made it to attract");
     // From BoxWrap2D example
     Vec2 worldTarget = box2d.coordPixelsToWorld(tx, ty);   
     Vec2 bodyVec = body.getWorldCenter();
@@ -70,30 +63,19 @@ class Particle {
     if (origin()) {
       body.setLinearVelocity(new Vec2(0, 0));
     }
-    // }
   }
 
-  // 
   void display() {
-    // We look at each body and get its screen position
     Vec2 pos = box2d.getBodyPixelCoord(body);
-    // Get its angle of rotation
     pushMatrix();
     translate(pos.x, pos.y);
     fill(r, g, b);
-    //stroke(0);
-    //strokeWeight(1);
-    //ellipse(0, 0, r*2, r*2);
-
-    //color c = img.get(x, y); 
-    //fill(c);   
     noStroke();      
     ellipse(0, 0, rad*2, rad*2);
 
     popMatrix();
   }
 
-  // Here's our function that adds the particle to the Box2D world
   void makeBody(float x, float y, float rad) {
     // Define a body
     BodyDef bd = new BodyDef();

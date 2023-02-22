@@ -1,21 +1,25 @@
-// The Nature of Code
-// <http://www.shiffman.net/teaching/nature>
-// Spring 2010
-// Box2DProcessing example
-
-// Class to describe the spring joint (displayed as a line)
+/**
+* Property of: Zoe Valladares
+* 
+* Code sampled from D. Shiffman
+*
+* The Nature of Code - Spring 2012
+* Box2DProcessing example
+* <http://www.shiffman.net/teaching/nature>
+* 
+* Class to describe the spring joint (displayed as a line)
+*/
 
 class Spring {
-
-  // This is the box2d object we need to create
   MouseJoint mouseJoint;
 
   Spring() {
-    // At first it doesn't exist
     mouseJoint = null;
   }
 
-  // If it exists we set its target to the mouse location 
+  /**
+    * If it exists we set its target to the mouse location 
+  */
   void update(float x, float y) {
     if (mouseJoint != null) {
       // Always convert to world coordinates!
@@ -41,10 +45,11 @@ class Spring {
     }
   }
 
-
-  // This is the key function where
-  // we attach the spring to an x,y location
-  // and the Box object's location
+  /**
+    * This is the key function where
+    * we attach the spring to an x,y location
+    * and the Box object's location
+  */
   void bind(float x, float y, Box box) {
     // Define the joint
     MouseJointDef md = new MouseJointDef();
@@ -62,10 +67,6 @@ class Spring {
     md.frequencyHz = 500.0;
     md.dampingRatio = 0.999;
 
-    // Wake up body!
-    //box.body.wakeUp();
-
-    // Make the joint!
     mouseJoint = (MouseJoint) box2d.world.createJoint(md);
   }
 
