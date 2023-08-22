@@ -27,6 +27,10 @@ AudioPlayer player;
 import processing.video.*;
 Capture video;
 
+// FOR CONVINIENCE
+import processing.event.KeyEvent;
+
+
 PImage img;
 int imageScale = 3;
 int cols, rows;
@@ -174,8 +178,11 @@ void draw() {
   lerpY2 = map(lerpY, 0, 360, 0, 800);
 
   box.body.setLinearVelocity(new Vec2(lerpX, lerpY));
-
-  playAudio();
+  
+  if (!players[imgsIndex].isPlaying()) {
+    players[imgsIndex].play();
+  }
+  //playAudio();
 
   if (particles.size() < 2) {
     for (int i = 0; i < cols; i += 2) {   
@@ -261,4 +268,39 @@ void updateColors() {
     }
   }
   players[imgsIndex].play();
+}
+
+/** THIS IS ADDED FOR CONVINIENCE **/
+void keyPressed() {
+  if (keyCode == LEFT) {
+    changeImageAndAudio(-1); // Move to the previous image/audio
+  } else if (keyCode == RIGHT) {
+    changeImageAndAudio(1); // Move to the next image/audio
+  }
+  if (key == 's' || key == 'S') {
+    saveScreenshot();
+  }
+}
+
+void changeImageAndAudio(int direction) {
+  if (players[imgsIndex].isPlaying()) {
+    players[imgsIndex].pause();
+    players[imgsIndex].rewind();
+  }
+  
+  imgsIndex += direction;
+  if (imgsIndex < 0) {
+    imgsIndex = imgs.length - 1;
+  } else if (imgsIndex >= imgs.length) {
+    imgsIndex = 0;
+  }
+  
+  updateColors();
+  players[imgsIndex].play();
+}
+
+void saveScreenshot() {
+  String screenshotFileName = "ss_" + nf(minute(), 2) + nf(second(), 2) + ".png";
+  save(screenshotFileName);
+  println("Screenshot saved as: " + screenshotFileName);
 }
