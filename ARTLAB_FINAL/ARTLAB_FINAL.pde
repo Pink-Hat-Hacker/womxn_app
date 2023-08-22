@@ -182,7 +182,6 @@ void draw() {
   if (!players[imgsIndex].isPlaying()) {
     players[imgsIndex].play();
   }
-  //playAudio();
 
   if (particles.size() < 2) {
     for (int i = 0; i < cols; i += 2) {   
@@ -224,20 +223,6 @@ void draw() {
     updateColors();
   }
 }
-
-
-
-//**PLAY AUDIO
-void playAudio() {
-  //if (players[imgsIndex].position() == players[imgsIndex].length()) {
-  //  //players[imgsIndex].rewind();
-  //  players[imgsIndex].play();
-  //  } else {
-  //  players[imgsIndex].play();
-  //}
-}
-
-
 
 float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
   float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
